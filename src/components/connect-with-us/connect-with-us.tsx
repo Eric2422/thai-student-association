@@ -48,6 +48,7 @@ const ConnectWithUs = (): ReactNode => {
         2 * Math.PI * (1 / 4)
     );
 
+    console.log(`${window.innerWidth / 2}, ${window.innerHeight / 2}`);
     console.log(LOGO_POSITIONS);
 
     return (
@@ -58,7 +59,10 @@ const ConnectWithUs = (): ReactNode => {
                        rounded-2xl
                        bg-neutral-800 text-center text-white"
         >
-            <div id="connect-logos" className="flex flex-col items-center">
+            <div
+                id="connect-logos"
+                className="static flex flex-col items-center"
+            >
                 {IMAGES_PATHS.map((imagePath, index) => {
                     const style = {
                         transform: `translate(${LOGO_POSITIONS[index][0]}px, ${LOGO_POSITIONS[index][1]}px)`,
@@ -76,7 +80,7 @@ const ConnectWithUs = (): ReactNode => {
             </div>
 
             <div
-                className="space-y-6 
+                className="static space-y-6 
                            text-center font-family-[Manrope] text-white"
             >
                 <button
