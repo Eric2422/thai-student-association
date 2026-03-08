@@ -52,16 +52,16 @@ const ConnectWithUs = (): ReactNode => {
     console.log(LOGO_POSITIONS);
 
     return (
-        <section
+        <div
             id="connect-with-us"
             className="w-full h-dvh
-                       flex flex-col justify-center items-center
+                       flex flex-col justify-center items-center place-content-center place-items-center
                        rounded-2xl
                        bg-neutral-800 text-center text-white"
         >
             <div
                 id="connect-logos"
-                className="static flex flex-col items-center"
+                className="flex place-self-center flex-col items-center"
             >
                 {IMAGES_PATHS.map((imagePath, index) => {
                     const style = {
@@ -80,7 +80,7 @@ const ConnectWithUs = (): ReactNode => {
             </div>
 
             <div
-                className="static space-y-6 
+                className="absolute space-y-6 
                            text-center font-family-[Manrope] text-white"
             >
                 <button
@@ -93,7 +93,7 @@ const ConnectWithUs = (): ReactNode => {
                 <h2 className="text-5xl font-semibold">Connect With Us</h2>
                 <h4>The students behind our Mission</h4>
             </div>
-        </section>
+        </div>
     );
 };
 
