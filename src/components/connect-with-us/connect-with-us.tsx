@@ -33,18 +33,18 @@ const ConnectWithUs = (): ReactNode => {
     /**
      * Stores the images paths of all the SVG logos to be displayed.
      */
-    const IMAGES_PATHS = [
-        "discord.svg",
-        "facebook.svg",
-        "gmail.svg",
-        "instagram.svg",
-        "linkedin.svg",
-        "youtube.svg",
+    const IMAGES = [
+        { filepath: "discord.svg", link: "" },
+        { filepath: "facebook.svg", link: "" },
+        { filepath: "gmail.svg", link: "" },
+        { filepath: "instagram.svg", link: "" },
+        { filepath: "linkedin.svg", link: "" },
+        { filepath: "youtube.svg", link: "" }
     ];
 
     const LOGO_POSITIONS = getRadialPoints(
         300,
-        IMAGES_PATHS.length,
+        IMAGES.length,
         2 * Math.PI * (1 / 4)
     );
 
@@ -55,32 +55,31 @@ const ConnectWithUs = (): ReactNode => {
         <div
             id="connect-with-us"
             className="w-full h-dvh
-                       flex flex-col justify-center items-center place-content-center place-items-center
+                       flex place-content-center-safe place-items-center-safe
                        rounded-2xl
                        bg-neutral-800 text-center text-white"
         >
-            <div
-                id="connect-logos"
-                className="flex place-self-center flex-col items-center"
-            >
-                {IMAGES_PATHS.map((imagePath, index) => {
+            <div id="connect-logos">
+                {IMAGES.map((image, index) => {
                     const style = {
-                        transform: `translate(${LOGO_POSITIONS[index][0]}px, ${LOGO_POSITIONS[index][1]}px)`,
+                        transform: `translate(${LOGO_POSITIONS[index][0]}px, ${LOGO_POSITIONS[index][1]}px)`
                     };
 
                     return (
-                        <img
-                            key={imagePath}
-                            src={`./src/assets/connect-with-us/${imagePath}`}
-                            className="absolute"
-                            style={style}
-                        />
+                        <a href={image.link}>
+                            <img
+                                className="absolute"
+                                key={index}
+                                src={`./src/assets/connect-with-us/${image.filepath}`}
+                                style={style}
+                            />
+                        </a>
                     );
                 })}
             </div>
 
             <div
-                className="absolute space-y-6 
+                className="space-y-6
                            text-center font-family-[Manrope] text-white"
             >
                 <button
