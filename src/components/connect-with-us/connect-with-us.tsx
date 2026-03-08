@@ -33,53 +33,50 @@ const ConnectWithUs = (): ReactNode => {
     /**
      * Stores the images paths of all the SVG logos to be displayed.
      */
-    const IMAGES = [
-        { filepath: "discord.svg", link: "" },
-        { filepath: "facebook.svg", link: "" },
-        { filepath: "gmail.svg", link: "" },
-        { filepath: "instagram.svg", link: "" },
-        { filepath: "linkedin.svg", link: "" },
-        { filepath: "youtube.svg", link: "" }
+    const IMAGES_PATHS = [
+        "discord.svg",
+        "facebook.svg",
+        "gmail.svg",
+        "instagram.svg",
+        "linkedin.svg",
+        "youtube.svg"
     ];
 
     const LOGO_POSITIONS = getRadialPoints(
         300,
-        IMAGES.length,
+        IMAGES_PATHS.length,
         2 * Math.PI * (1 / 4)
     );
 
-    console.log(`${window.innerWidth / 2}, ${window.innerHeight / 2}`);
     console.log(LOGO_POSITIONS);
 
     return (
-        <div
+        <section
             id="connect-with-us"
             className="w-full h-dvh
-                       flex place-content-center-safe place-items-center-safe
+                       flex flex-col justify-center items-center
                        rounded-2xl
                        bg-neutral-800 text-center text-white"
         >
-            <div id="connect-logos">
-                {IMAGES.map((image, index) => {
+            <div id="connect-logos" className="flex flex-col items-center">
+                {IMAGES_PATHS.map((imagePath, index) => {
                     const style = {
                         transform: `translate(${LOGO_POSITIONS[index][0]}px, ${LOGO_POSITIONS[index][1]}px)`
                     };
 
                     return (
-                        <a href={image.link}>
-                            <img
-                                className="absolute"
-                                key={index}
-                                src={`./src/assets/connect-with-us/${image.filepath}`}
-                                style={style}
-                            />
-                        </a>
+                        <img
+                            key={imagePath}
+                            src={`./src/assets/connect-with-us/${imagePath}`}
+                            className="absolute"
+                            style={style}
+                        />
                     );
                 })}
             </div>
 
             <div
-                className="space-y-6
+                className="space-y-6 
                            text-center font-family-[Manrope] text-white"
             >
                 <button
@@ -92,7 +89,7 @@ const ConnectWithUs = (): ReactNode => {
                 <h2 className="text-5xl font-semibold">Connect With Us</h2>
                 <h4>The students behind our Mission</h4>
             </div>
-        </div>
+        </section>
     );
 };
 
