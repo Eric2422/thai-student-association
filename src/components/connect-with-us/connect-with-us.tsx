@@ -48,6 +48,8 @@ const ConnectWithUs = (): ReactNode => {
         2 * Math.PI * (1 / 4)
     );
 
+    console.log(LOGO_POSITIONS);
+
     return (
         <section
             id="connect-with-us"
