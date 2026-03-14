@@ -42,8 +42,10 @@ const ConnectWithUs = (): ReactNode => {
         "youtube.svg"
     ];
 
+
+    // Calculate Cartesian coordinates for the logos.
     const LOGO_POSITIONS = getRadialPoints(
-        300,
+        315,
         IMAGES_PATHS.length,
         2 * Math.PI * (1 / 4)
     );
@@ -53,12 +55,13 @@ const ConnectWithUs = (): ReactNode => {
     return (
         <section
             id="connect-with-us"
-            className="w-full h-dvh
+            className="relative
+                       w-screen h-screen
                        flex flex-col justify-center items-center
                        rounded-2xl
                        bg-neutral-800 text-center text-white"
         >
-            <div id="connect-logos" className="flex flex-col items-center">
+            <div id="connect-logos" className="static mt-20 flex flex flex-col items-center">
                 {IMAGES_PATHS.map((imagePath, index) => {
                     const style = {
                         transform: `translate(${LOGO_POSITIONS[index][0]}px, ${LOGO_POSITIONS[index][1]}px)`
@@ -68,7 +71,7 @@ const ConnectWithUs = (): ReactNode => {
                         <img
                             key={imagePath}
                             src={`./src/assets/connect-with-us/${imagePath}`}
-                            className="absolute"
+                            className="absolute inline"
                             style={style}
                         />
                     );
@@ -76,7 +79,7 @@ const ConnectWithUs = (): ReactNode => {
             </div>
 
             <div
-                className="space-y-6 
+                className="static space-y-6 
                            text-center font-family-[Manrope] text-white"
             >
                 <button
