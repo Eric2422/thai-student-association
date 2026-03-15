@@ -37,11 +37,6 @@ const getRadialPoints = (
 const ConnectWithUs = (): ReactNode => {
     // const logos_ref = useRef();
 
-    // Use selectors...
-    // useGSAP(() => {
-    //     gsap.to("#connect-logos", { rotation: "+=360", duration: 3 });
-    // });
-
     /**
      * Stores the images paths of all the SVG logos to be displayed.
      */
@@ -65,6 +60,11 @@ const ConnectWithUs = (): ReactNode => {
     );
 
     console.log(LOGO_POSITIONS);
+
+    // Use selectors...
+    // useGSAP(() => {
+    //     gsap.to("#connect-logos", { x: 500, duration: 10 });
+    // });
 
     return (
         <section
