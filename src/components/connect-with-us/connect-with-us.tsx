@@ -1,4 +1,12 @@
-import type { ReactNode } from "react";
+
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import type { ReactNode, useRef } from "react";
+import React from "react";
+
+// Register the hook to avoid React version discrepancies.
+gsap.registerPlugin(useGSAP);
+const { useRef } = React;
 
 /**
  * Calculate an array of equidistant positions around a circle with a center at
@@ -30,6 +38,15 @@ const getRadialPoints = (
 };
 
 const ConnectWithUs = (): ReactNode => {
+    const logos_ref = useRef();
+
+    useGSAP(
+        () => {
+            // use selectors...
+      gsap.to("#connect-logos", { rotation: "+=360", duration: 3 });
+        }
+    )
+
     /**
      * Stores the images paths of all the SVG logos to be displayed.
      */
@@ -41,7 +58,6 @@ const ConnectWithUs = (): ReactNode => {
         "linkedin.svg",
         "youtube.svg"
     ];
-
 
     // Calculate Cartesian coordinates for the logos.
     const LOGO_POSITIONS = getRadialPoints(
@@ -61,7 +77,10 @@ const ConnectWithUs = (): ReactNode => {
                        rounded-2xl
                        bg-neutral-800 text-center text-white"
         >
-            <div id="connect-logos" className="static mt-20 flex flex flex-col items-center">
+            <div
+                id="connect-logos"
+                className="static mt-20 flex flex flex-col items-center"
+            >
                 {IMAGES_PATHS.map((imagePath, index) => {
                     const style = {
                         transform: `translate(${LOGO_POSITIONS[index][0]}px, ${LOGO_POSITIONS[index][1]}px)`
