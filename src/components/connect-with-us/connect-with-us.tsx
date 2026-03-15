@@ -1,12 +1,9 @@
-
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import type { ReactNode, useRef } from "react";
-import React from "react";
 
 // Register the hook to avoid React version discrepancies.
 gsap.registerPlugin(useGSAP);
-const { useRef } = React;
 
 /**
  * Calculate an array of equidistant positions around a circle with a center at
@@ -38,32 +35,30 @@ const getRadialPoints = (
 };
 
 const ConnectWithUs = (): ReactNode => {
-    const logos_ref = useRef();
+    // const logos_ref = useRef();
 
-    useGSAP(
-        () => {
-            // use selectors...
-      gsap.to("#connect-logos", { rotation: "+=360", duration: 3 });
-        }
-    )
+    // Use selectors...
+    // useGSAP(() => {
+    //     gsap.to("#connect-logos", { rotation: "+=360", duration: 3 });
+    // });
 
     /**
      * Stores the images paths of all the SVG logos to be displayed.
      */
-    const IMAGES_PATHS = [
-        "discord.svg",
-        "facebook.svg",
-        "gmail.svg",
-        "instagram.svg",
-        "linkedin.svg",
-        "youtube.svg"
+    const LOGO_DATA = [
+        { imagePath: "discord.svg", link: "https://www.discord.com" },
+        { imagePath: "facebook.svg", link: "https://www.facebook.com" },
+        { imagePath: "gmail.svg", link: "https://mail.google.com" },
+        { imagePath: "instagram.svg", link: "https://www.instagram.com" },
+        { imagePath: "linkedin.svg", link: "https://www.linkedin.com" },
+        { imagePath: "youtube.svg", link: "https://www.youtube.com" }
     ];
 
     // Calculate Cartesian coordinates for the logos.
     const LOGO_POSITIONS = getRadialPoints(
         315,
-        IMAGES_PATHS.length,
-        2 * Math.PI * (1 / 4)
+        LOGO_DATA.length,
+        (2 * Math.PI) / 4
     );
 
     console.log(LOGO_POSITIONS);
@@ -81,18 +76,22 @@ const ConnectWithUs = (): ReactNode => {
                 id="connect-logos"
                 className="static mt-20 flex flex flex-col items-center"
             >
-                {IMAGES_PATHS.map((imagePath, index) => {
+                {LOGO_DATA.map((image, index) => {
                     const style = {
                         transform: `translate(${LOGO_POSITIONS[index][0]}px, ${LOGO_POSITIONS[index][1]}px)`
                     };
 
                     return (
-                        <img
-                            key={imagePath}
-                            src={`./src/assets/connect-with-us/${imagePath}`}
+                        <a
+                            href={image.link}
+                            key={image.imagePath}
                             className="absolute inline"
                             style={style}
-                        />
+                        >
+                            <img
+                                src={`./src/assets/connect-with-us/${image.imagePath}`}
+                            />
+                        </a>
                     );
                 })}
             </div>
