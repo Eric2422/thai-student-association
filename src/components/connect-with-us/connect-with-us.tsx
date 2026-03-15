@@ -46,19 +46,19 @@ const ConnectWithUs = (): ReactNode => {
      * Stores the images paths of all the SVG logos to be displayed.
      */
     const LOGO_DATA = [
-        { imagePath: "discord.svg", link: "" },
-        { imagePath: "facebook.svg", link: "" },
-        { imagePath: "gmail.svg", link: "" },
-        { imagePath: "instagram.svg", link: "" },
-        { imagePath: "linkedin.svg", link: "" },
-        { imagePath: "youtube.svg", link: "" }
+        { imagePath: "discord.svg", link: "https://www.discord.com" },
+        { imagePath: "facebook.svg", link: "https://www.facebook.com" },
+        { imagePath: "gmail.svg", link: "https://mail.google.com" },
+        { imagePath: "instagram.svg", link: "https://www.instagram.com" },
+        { imagePath: "linkedin.svg", link: "https://www.linkedin.com" },
+        { imagePath: "youtube.svg", link: "https://www.youtube.com" }
     ];
 
     // Calculate Cartesian coordinates for the logos.
     const LOGO_POSITIONS = getRadialPoints(
         315,
         LOGO_DATA.length,
-        2 * Math.PI * (1 / 4)
+        (2 * Math.PI) / 4
     );
 
     console.log(LOGO_POSITIONS);
@@ -82,12 +82,14 @@ const ConnectWithUs = (): ReactNode => {
                     };
 
                     return (
-                        <a href={image.link}>
+                        <a
+                            href={image.link}
+                            key={image.imagePath}
+                            className="absolute inline"
+                            style={style}
+                        >
                             <img
-                                key={image.imagePath}
                                 src={`./src/assets/connect-with-us/${image.imagePath}`}
-                                className="absolute inline"
-                                style={style}
                             />
                         </a>
                     );
