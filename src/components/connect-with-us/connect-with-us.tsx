@@ -1,12 +1,9 @@
-
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import type { ReactNode, useRef } from "react";
-import React from "react";
 
 // Register the hook to avoid React version discrepancies.
 gsap.registerPlugin(useGSAP);
-const { useRef } = React;
 
 /**
  * Calculate an array of equidistant positions around a circle with a center at
@@ -38,14 +35,12 @@ const getRadialPoints = (
 };
 
 const ConnectWithUs = (): ReactNode => {
-    const logos_ref = useRef();
+    // const logos_ref = useRef();
 
-    useGSAP(
-        () => {
-            // use selectors...
-      gsap.to("#connect-logos", { rotation: "+=360", duration: 3 });
-        }
-    )
+    // Use selectors...
+    // useGSAP(() => {
+    //     gsap.to("#connect-logos", { rotation: "+=360", duration: 3 });
+    // });
 
     /**
      * Stores the images paths of all the SVG logos to be displayed.
