@@ -47,9 +47,12 @@ const ConnectWithUs = (): ReactNode => {
      */
     const LOGO_DATA = [
         { imagePath: "discord.svg", link: "https://www.discord.com" },
-        { imagePath: "facebook.svg", link: "https://www.facebook.com" },
+        { imagePath: "facebook.svg", link: "https://www.facebook.com/umcptsa" },
         { imagePath: "gmail.svg", link: "https://mail.google.com" },
-        { imagePath: "instagram.svg", link: "https://www.instagram.com" },
+        {
+            imagePath: "instagram.svg",
+            link: "https://www.instagram.com/umdtsa"
+        },
         { imagePath: "linkedin.svg", link: "https://www.linkedin.com" },
         { imagePath: "youtube.svg", link: "https://www.youtube.com" }
     ];
