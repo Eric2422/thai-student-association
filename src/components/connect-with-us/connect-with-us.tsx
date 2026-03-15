@@ -59,12 +59,10 @@ const ConnectWithUs = (): ReactNode => {
         (2 * Math.PI) / 4
     );
 
-    console.log(LOGO_POSITIONS);
-
     // Use selectors...
-    // useGSAP(() => {
-    //     gsap.to("#connect-logos", { x: 500, duration: 10 });
-    // });
+    useGSAP(() => {
+        gsap.to("#connect-with-us-logos", { x: 0, duration: 10 });
+    });
 
     return (
         <section
@@ -76,7 +74,7 @@ const ConnectWithUs = (): ReactNode => {
                        bg-neutral-800 text-center text-white"
         >
             <div
-                id="connect-logos"
+                id="connect-with-us-logos"
                 className="static mt-20 flex flex flex-col items-center"
             >
                 {LOGO_DATA.map((image, index) => {
@@ -103,10 +101,7 @@ const ConnectWithUs = (): ReactNode => {
                 className="static space-y-6 
                            text-center font-family-[Manrope] text-white"
             >
-                <button
-                    id="connect-with-us-button"
-                    className="border-1 border-white rounded-sm py-2 px-4"
-                >
+                <button className="border-1 border-white rounded-sm py-2 px-4">
                     Members
                 </button>
 
