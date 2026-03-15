@@ -45,19 +45,19 @@ const ConnectWithUs = (): ReactNode => {
     /**
      * Stores the images paths of all the SVG logos to be displayed.
      */
-    const IMAGES_PATHS = [
-        "discord.svg",
-        "facebook.svg",
-        "gmail.svg",
-        "instagram.svg",
-        "linkedin.svg",
-        "youtube.svg"
+    const LOGO_DATA = [
+        { imagePath: "discord.svg", link: "" },
+        { imagePath: "facebook.svg", link: "" },
+        { imagePath: "gmail.svg", link: "" },
+        { imagePath: "instagram.svg", link: "" },
+        { imagePath: "linkedin.svg", link: "" },
+        { imagePath: "youtube.svg", link: "" }
     ];
 
     // Calculate Cartesian coordinates for the logos.
     const LOGO_POSITIONS = getRadialPoints(
         315,
-        IMAGES_PATHS.length,
+        LOGO_DATA.length,
         2 * Math.PI * (1 / 4)
     );
 
@@ -76,18 +76,20 @@ const ConnectWithUs = (): ReactNode => {
                 id="connect-logos"
                 className="static mt-20 flex flex flex-col items-center"
             >
-                {IMAGES_PATHS.map((imagePath, index) => {
+                {LOGO_DATA.map((image, index) => {
                     const style = {
                         transform: `translate(${LOGO_POSITIONS[index][0]}px, ${LOGO_POSITIONS[index][1]}px)`
                     };
 
                     return (
-                        <img
-                            key={imagePath}
-                            src={`./src/assets/connect-with-us/${imagePath}`}
-                            className="absolute inline"
-                            style={style}
-                        />
+                        <a href={image.link}>
+                            <img
+                                key={image.imagePath}
+                                src={`./src/assets/connect-with-us/${image.imagePath}`}
+                                className="absolute inline"
+                                style={style}
+                            />
+                        </a>
                     );
                 })}
             </div>
