@@ -1,6 +1,6 @@
-import gsap from "gsap";
+import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import type { ReactNode, useRef } from "react";
+import type { ReactNode } from "react";
 
 // Register the hook to avoid React version discrepancies.
 gsap.registerPlugin(useGSAP);
@@ -35,13 +35,6 @@ const getRadialPoints = (
 };
 
 const ConnectWithUs = (): ReactNode => {
-    // const logos_ref = useRef();
-
-    // Use selectors...
-    // useGSAP(() => {
-    //     gsap.to("#connect-logos", { rotation: "+=360", duration: 3 });
-    // });
-
     /**
      * Stores the images paths of all the SVG logos to be displayed.
      */
@@ -57,14 +50,38 @@ const ConnectWithUs = (): ReactNode => {
         { imagePath: "youtube.svg", link: "https://www.youtube.com" }
     ];
 
+    // Radius of the logos around the center.
+    const LOGOS_RADIUS = 315;
+
     // Calculate Cartesian coordinates for the logos.
     const LOGO_POSITIONS = getRadialPoints(
-        315,
+        LOGOS_RADIUS,
         LOGO_DATA.length,
         (2 * Math.PI) / 4
     );
 
-    console.log(LOGO_POSITIONS);
+    // Use selectors...
+    // useGSAP(() => {
+    //     gsap.to(".logos-container", {
+    //         rotation: "+=0",
+    //         duration: 3,
+    //         ease: "none",
+    //         repeat: -1
+    //     });
+    // });
+
+    useGSAP(() => {
+        /*
+         * Make the individual logos Loop counterclockwise at a constant speed
+         * to counteract the overrall rotation.
+         */
+        gsap.to(".logo", {
+            rotation: -360,
+            duration: 5,
+            ease: "none",
+            repeat: -1
+        });
+    });
 
     return (
         <section
@@ -75,10 +92,15 @@ const ConnectWithUs = (): ReactNode => {
                        rounded-2xl
                        bg-neutral-800 text-center text-white"
         >
-            <div
-                id="connect-logos"
-                className="static mt-20 flex flex flex-col items-center"
-            >
+            <div className="logos-container static mt-20 flex flex-col items-center">
+                <svg className="absolute m-auto" >
+                    <circle
+                        r={LOGOS_RADIUS}
+                        cx={window.outerWidth / 5}
+                        cy={window.outerHeight / 5}
+                    />
+                </svg>
+
                 {LOGO_DATA.map((image, index) => {
                     const style = {
                         transform: `translate(${LOGO_POSITIONS[index][0]}px, ${LOGO_POSITIONS[index][1]}px)`
@@ -88,7 +110,7 @@ const ConnectWithUs = (): ReactNode => {
                         <a
                             href={image.link}
                             key={image.imagePath}
-                            className="absolute inline"
+                            className="logo absolute inline"
                             style={style}
                         >
                             <img
